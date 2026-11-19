@@ -1,0 +1,20 @@
+{
+  "testedAt": "2026-11-15T16:33:08.296Z",
+  "scope": "Latest source worker and UI; existing previously fresh managed Qwen reused, not fresh installation",
+  "model": "qwen3:4b",
+  "health": {
+    "workerConnected": true,
+    "aiConfigured": true,
+    "aiProvider": "ollama",
+    "aiModel": "qwen3:4b",
+    "aiReachable": true,
+    "aiModelAvailable": true,
+    "aiDetail": "Model available; an inference run is still required",
+    "aiVerifiedAt": "2026-11-15T16:33:43.118Z",
+    "browserReady": true,
+    "mode": "hosted-single-owner",
+    "persistentEvidence": true,
+    "persistenceEngine": "sqlite",
+    "persistenceHealthy": true
+  }
+}

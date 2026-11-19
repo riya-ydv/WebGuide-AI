@@ -1,0 +1,18 @@
+{
+  "report": {
+    "file": "submission/WebGuide_AI_Final_Report.docx",
+    "pdf": "submission/WebGuide_AI_Final_Report.pdf",
+    "pages": 10,
+    "renderer": "Installed Microsoft Word PDF export; bundled pypdfium2 PNG render",
+    "visualReview": "Every page inspected; title border removed, header orphan and mobile image overflow fixed",
+    "packagedRendererLimit": "LibreOffice unavailable; logged render_docx.py failure before Word fallback"
+  },
+  "presentation": {
+    "file": "submission/WebGuide_AI_Final_Presentation.pptx",
+    "slides": 16,
+    "renderer": "Bundled Artifact Tool",
+    "visualReview": "Every slide inspected; cover contrast and missing image fixed",
+    "validation": "Package integrity, geometry/font policy and first-party import passed",
+    "nativePowerPointExecution": false
+  }
+}

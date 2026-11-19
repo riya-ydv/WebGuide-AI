@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>WebGuide AI companion</title>
+    <style>
+      html {
+        width: 390px;
+        overflow-y: auto;
+      }
+      body {
+        box-sizing: border-box;
+        width: 100%;
+        overflow-wrap: anywhere;
+        margin: 0;
+        padding: 20px;
+        font: 16px/1.5 system-ui;
+        background: #f6f8fc;
+        color: #112a43;
+      }
+      h1 {
+        font-size: 23px;
+        margin: 0 0 8px;
+      }
+      button,
+      input {
+        font: inherit;
+        box-sizing: border-box;
+        width: 100%;
+        min-height: 44px;
+        border-radius: 8px;
+        padding: 10px;
+      }
+      button {
+        border: 0;
+        background: #164b73;
+        color: white;
+        margin: 8px 0;
+      }
+      input {
+        border: 2px solid #58718a;
+        background: white;
+      }
+      label {
+        display: block;
+        margin: 12px 0;
+      }
+      summary {
+        min-height: 44px;
+        cursor: pointer;
+        padding: 8px 0;
+      }
+      button:focus-visible,
+      input:focus-visible,
+      summary:focus-visible {
+        outline: 3px solid #c05621;
+        outline-offset: 3px;
+      }
+      #status {
+        background: #e5f3ef;
+        padding: 10px;
+        border-radius: 8px;
+        font-size: 14px;
+      }
+      small {
+        display: block;
+        font-size: 13px;
+      }
+      .eyebrow {
+        font-size: 11px;
+        letter-spacing: 0.12em;
+        font-weight: 700;
+        color: #176a72;
+        margin: 0 0 6px;
+      }
+      #open {
+        background: #176a72;
+        font-weight: 650;
+      }
+      .local-note {
+        font-size: 14px;
+        color: #435d70;
+      }
+      details {
+        border-top: 1px solid #d4e0e8;
+        margin-top: 18px;
+        padding-top: 8px;
+      }
+      .optional {
+        font-size: 12px;
+        color: #435d70;
+        font-weight: 400;
+      }
+      body {
+        background: #fff;
+        color: #142c40;
+      }
+      #connect {
+        background: #142c40;
+      }
+      summary {
+        font-weight: 650;
+      }
+    </style>
+  </head>
+  <body>
+    <p class="eyebrow">BROWSER COMPANION</p>
+    <h1>WebGuide AI</h1>
+    <p>Read your page. Move between controls. Choose voice when you need it.</p>
+    <button id="open">Open companion on this page</button>
+    <p id="status" role="status" aria-live="polite">No microphone starts automatically.</p>
+    <p class="local-note">
+      Reading and navigation are ready without an AI server. No microphone starts automatically.
+    </p>
+    <details>
+      <summary>Connect an AI guidance worker <span class="optional">Optional</span></summary>
+      <p>
+        Read and keyboard commands work without a worker. For page-specific AI guidance, connect a
+        worker you trust.
+      </p>
+      <label
+        >Worker URL<input
+          id="endpoint"
+          type="url"
+          placeholder="http://127.0.0.1:4318"
+          autocomplete="off" /></label
+      ><label>Worker access token<input id="token" type="password" autocomplete="off" /></label
+      ><small
+        >The token stays in protected extension session storage, not website code or disk. It clears
+        when the browser session ends. Permission is requested only for the worker origin you
+        enter.</small
+      ><button id="connect">Connect worker</button>
+      <p>
+        <small>For hosted worker setup, allow this exact origin in WEBGUIDE_ALLOWED_ORIGINS:</small
+        ><code
+          id="extension-origin"
+          style="display: block; overflow-wrap: anywhere; font-size: 12px"
+        ></code>
+      </p>
+    </details>
+    <p>
+      <small
+        >For browser settings, extension-store pages or protected viewers, open an ordinary HTTP or
+        HTTPS website first. This desktop extension is for Chrome and Edge, not Safari.</small
+      >
+    </p>
+    <script src="popup.js"></script>
+  </body>
+</html>

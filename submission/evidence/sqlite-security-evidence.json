@@ -1,0 +1,128 @@
+{
+  "testedAt": "2026-11-15T16:15:06.605766+00:00",
+  "scope": "Local worker SQLite and backend security; not an independent penetration test",
+  "database": {
+    "engine": "SQLite via Node node:sqlite",
+    "file": ".webguide-local/data/webguide.sqlite",
+    "tables": {
+      "task_sessions": "Exploration job metadata, observed context and generated tutorial payload",
+      "task_steps": "Observed execution traces with session foreign key and ordered position",
+      "interactions": "Actual exploration event messages with session foreign key and ordered position",
+      "store_metadata": "One-time legacy migration marker"
+    },
+    "browserOnly": "Profile, preferences, bookmarks and saved websites remain in browser storage",
+    "rawAudioStored": false,
+    "legacyImport": "Validated JSON import in one transaction; original jobs.json remains unchanged as recovery copy; marker prevents resurrection after deletion"
+  },
+  "checks": [
+    {
+      "test": "worker/hosted.test.ts",
+      "passed": 5,
+      "coverage": [
+        "exact extension origins and hosted config",
+        "SQLite restart cancellation and retention",
+        "schema validation",
+        "prepared SQL injection-shaped value",
+        "one-time legacy import",
+        "corrupt legacy rollback",
+        "durable deletion"
+      ]
+    },
+    {
+      "test": "worker/sqlite-http.test.ts",
+      "passed": 1,
+      "coverage": [
+        "actual isolated HTTP service start",
+        "SQLite format signature",
+        "record survives process restart",
+        "DELETE persists across second restart",
+        "exact Bearer auth",
+        "Host and Origin rejection",
+        "unauthorized private sandbox rejection"
+      ]
+    },
+    {
+      "test": "scripts/launcher-core.test.mjs + scripts/launcher-secondary.test.mjs",
+      "passed": 13,
+      "coverage": [
+        "new canonical WebGuide env keys",
+        "old .env compatibility without rewriting",
+        "canonical precedence",
+        "bounded redacted setup output",
+        "private runtimes and caches",
+        "owner lock preservation"
+      ]
+    },
+    {
+      "test": "worker/guidance.test.ts + worker/provider.test.ts + worker/security.test.ts + worker/hosted.test.ts",
+      "passed": 23,
+      "note": "Provider contract subtests use mocks; separate live AI evidence must be used for real inference claims"
+    },
+    {
+      "test": "npm run typecheck",
+      "result": "passed"
+    },
+    {
+      "test": "npm audit --omit=dev --json",
+      "result": "0 reported production dependency vulnerabilities",
+      "evidence": "artifacts/security-npm-production.json"
+    },
+    {
+      "test": "npm audit --json",
+      "result": "0 vulnerabilities across production and development dependencies",
+      "evidence": "artifacts/security-npm-all.json"
+    },
+    {
+      "test": "python scripts/package-security-test.py",
+      "result": "passed; 8 private/stale artifacts rejected, 3 public files including submission PDF and manifest preserved"
+    },
+    {
+      "test": "npm run lint -- --quiet",
+      "result": "ESLint executes; full repository failed 3569 issues, 3562 format issues. Parent notified for coordinated formatter; owned empty catches corrected."
+    },
+    {
+      "test": "targeted ESLint on owned worker/config/store/server and canonical-env live scripts",
+      "result": "passed"
+    }
+  ],
+  "fixedFindings": [
+    {
+      "id": "SEC01",
+      "severity": "low",
+      "before": "Authorization header containing bare exact token was accepted",
+      "after": "Only exact Bearer scheme is accepted; raw token returns 401"
+    },
+    {
+      "id": "DB01",
+      "severity": "functional",
+      "before": "Evidence persistence was JSON only and disabled by default locally",
+      "after": "Local and hosted jobs use real SQLite; default local database enabled"
+    },
+    {
+      "id": "BRAND01",
+      "severity": "functional",
+      "before": "Fresh configuration generated old product environment names",
+      "after": "Fresh config uses WEBGUIDE_*; older names only supported by compatibility adapter"
+    },
+    {
+      "id": "SEC02",
+      "severity": "medium",
+      "before": "Configured SQLite data outside default private folder could enter source ZIP",
+      "after": "Release excludes database files, sidecars and legacy jobs.json at any path; rejects symlinks"
+    },
+    {
+      "id": "SEC03",
+      "severity": "medium",
+      "before": "New app guidance consent reset placed after useEffect return and could survive section/session change",
+      "after": "Voice agent moved reset before return and made request permit synchronous single-use; source independently re-reviewed"
+    }
+  ],
+  "remainingLimits": [
+    "No claim of unhackability or independent penetration-test certification",
+    "SQLite is private local storage, not encryption at rest; OS account compromise can access local data",
+    "Single worker process owns the database; not a multi-tenant or multi-writer deployment",
+    "Browser profile/preferences remain browser-local",
+    "No physical Mac verification in this Windows run",
+    "Native permission and microphone tests require separate evidence"
+  ]
+}

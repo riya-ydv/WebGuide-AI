@@ -1,0 +1,326 @@
+/* Shared browser core for the embedded widget, browser companion and React app. */
+(() => {
+  const scope = typeof window === "undefined" ? globalThis : window;
+  if (scope.WebGuidePageAssistance) return;
+  const ids = new WeakMap();
+  const elements = new Map();
+  let nextId = 0;
+  let interactionRevision = 0;
+  if (typeof document !== "undefined")
+    for (const eventName of ["input", "change"]) {
+      document.addEventListener(
+        eventName,
+        (event) => {
+          if (
+            event.target instanceof Element &&
+            !event.target.closest(
+              "[data-webguide-ui],[data-webguide-voice],[data-webguide-guidance],#webguide-companion",
+            )
+          )
+            interactionRevision++;
+        },
+        true,
+      );
+    }
+  const omitted =
+    '[data-webguide-ui],[data-webguide-voice],[data-webguide-guidance],#webguide-companion,[data-webguide-private],[data-private],[hidden],[inert],[aria-hidden="true"],script,style,noscript,template';
+  const privateField =
+    /password|passcode|otp|one.time|credit|card.?number|cvv|cvc|payment|bank|account.?number|social.?security|secret|token/i;
+  const compact = (value) =>
+    String(value || "")
+      .replace(/\s+/g, " ")
+      .trim();
+  function visible(element) {
+    if (!(element instanceof HTMLElement) || !element.isConnected || element.closest(omitted))
+      return false;
+    const style = getComputedStyle(element);
+    return (
+      style.display !== "none" &&
+      style.visibility !== "hidden" &&
+      element.getClientRects().length > 0
+    );
+  }
+  function text(element, limit = 1000) {
+    if (!element || !visible(element)) return "";
+    const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
+    const parts = [];
+    let size = 0,
+      node;
+    while ((node = walker.nextNode()) && size < limit) {
+      const parent = node.parentElement;
+      if (
+        !parent ||
+        !visible(parent) ||
+        parent.closest("input,textarea,select,[contenteditable],form")
+      )
+        continue;
+      const value = compact(node.textContent);
+      if (value) {
+        parts.push(value);
+        size += value.length + 1;
+      }
+    }
+    return parts.join(" ").slice(0, limit);
+  }
+  function labelText(element) {
+    if (!element || !visible(element) || element.closest("input,textarea,select,[contenteditable]"))
+      return "";
+    const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
+    const parts = [];
+    let length = 0,
+      node;
+    while ((node = walker.nextNode()) && length < 400) {
+      const parent = node.parentElement;
+      if (!parent || !visible(parent) || parent.closest("input,textarea,select,[contenteditable]"))
+        continue;
+      const value = compact(node.textContent);
+      if (value) {
+        parts.push(value);
+        length += value.length + 1;
+      }
+    }
+    return parts.join(" ").slice(0, 400);
+  }
+  function label(element) {
+    const labelled = (element.getAttribute("aria-labelledby") || "")
+      .split(/\s+/)
+      .map((id) => document.getElementById(id))
+      .filter((node) => node && visible(node))
+      .map((node) => labelText(node))
+      .join(" ");
+    const labels = Array.from(element.labels || [])
+      .filter(visible)
+      .map((node) => labelText(node))
+      .join(" ");
+    return compact(
+      labelled ||
+        element.getAttribute("aria-label") ||
+        labels ||
+        (element instanceof HTMLInputElement
+          ? element.getAttribute("placeholder")
+          : labelText(element)) ||
+        element.getAttribute("title") ||
+        element.getAttribute("alt") ||
+        "",
+    ).slice(0, 160);
+  }
+  function sensitive(element) {
+    return (
+      /^(password|hidden|file)$/i.test(element.getAttribute("type") || "") ||
+      privateField.test(
+        [
+          label(element),
+          element.getAttribute("name"),
+          element.getAttribute("autocomplete"),
+          element.id,
+        ].join(" "),
+      )
+    );
+  }
+  function identifier(element) {
+    if (!ids.has(element)) ids.set(element, `wg-target-${++nextId}`);
+    const id = ids.get(element);
+    elements.set(id, element);
+    return id;
+  }
+  function role(element) {
+    const explicit = element.getAttribute("role");
+    if (explicit) return explicit;
+    if (element.matches("a[href]")) return "link";
+    if (element.matches("button,input[type=submit],input[type=button]")) return "button";
+    if (element instanceof HTMLSelectElement) return "combobox";
+    if (element instanceof HTMLTextAreaElement) return "textbox";
+    if (element instanceof HTMLInputElement)
+      return ["checkbox", "radio"].includes(element.type) ? element.type : "textbox";
+    return element.tagName.toLowerCase();
+  }
+  function hash(value) {
+    let h = 2166136261;
+    for (let i = 0; i < value.length; i++) {
+      h ^= value.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    return (h >>> 0).toString(16);
+  }
+  function capture(root = document.body) {
+    const base = root instanceof Element ? root : document.body;
+    const controls = Array.from(
+      base.querySelectorAll(
+        "button,a[href],input,textarea,select,[role=button],[role=link],[role=combobox]",
+      ),
+    )
+      .filter(visible)
+      .filter((e) => !sensitive(e))
+      .slice(0, 60)
+      .map((element) => {
+        const description = (element.getAttribute("aria-describedby") || "")
+          .split(/\s+/)
+          .map((id) => document.getElementById(id))
+          .filter(visible)
+          .map((node) => labelText(node))
+          .join(" ")
+          .slice(0, 400);
+        const invalid = element.getAttribute("aria-invalid") === "true";
+        const result = { id: identifier(element), name: label(element), role: role(element) };
+        const type = element.getAttribute("type");
+        if (type) result.type = type.slice(0, 40);
+        result.required =
+          element.hasAttribute("required") || element.getAttribute("aria-required") === "true";
+        result.disabled =
+          Boolean(element.disabled) || element.getAttribute("aria-disabled") === "true";
+        if (description) result.description = description;
+        if (invalid) result.error = description || "This field is marked invalid.";
+        return result;
+      });
+    const headings = Array.from(base.querySelectorAll("h1,h2,h3,h4,h5,h6,[role=heading]"))
+      .filter(visible)
+      .filter((e) => !e.closest("form"))
+      .slice(0, 40)
+      .map((e) => ({
+        id: identifier(e),
+        text: text(e, 250),
+        level: Math.max(
+          1,
+          Math.min(6, Number(e.getAttribute("aria-level") || e.tagName.slice(1)) || 2),
+        ),
+      }))
+      .filter((e) => e.text && !controls.some((c) => c.id === e.id));
+    const url = new URL(location.href);
+    url.username = "";
+    url.password = "";
+    url.search = "";
+    url.hash = "";
+    const context = {
+      url: url.href,
+      title: compact(document.title).slice(0, 200),
+      text: text(base, 12000),
+      controls,
+      headings,
+    };
+    for (const [id, element] of elements) {
+      if (!element.isConnected) elements.delete(id);
+    }
+    while (JSON.stringify(context).length > 19500 && context.text.length > 1000)
+      context.text = context.text.slice(0, Math.max(1000, context.text.length - 1000));
+    while (JSON.stringify(context).length > 19500 && context.controls.length)
+      context.controls.pop();
+    return {
+      ...context,
+      revision: `page-${hash(JSON.stringify(context) + location.href + interactionRevision)}`,
+    };
+  }
+  function findTarget(id, root = document.body) {
+    const element = elements.get(id);
+    return element && root.contains(element) && visible(element) && !sensitive(element)
+      ? element
+      : null;
+  }
+  async function requestGuidance({
+    endpoint,
+    token,
+    goal,
+    mode = "guide",
+    language = "en",
+    previousInstruction,
+    context,
+    signal,
+  }) {
+    const url = new URL(endpoint);
+    if (
+      url.protocol !== "https:" &&
+      !(url.protocol === "http:" && ["localhost", "127.0.0.1", "[::1]"].includes(url.hostname))
+    )
+      throw new Error("Use HTTPS, or a loopback development endpoint.");
+    if (url.username || url.password || url.search || url.hash || url.pathname !== "/")
+      throw new Error(
+        "Use only the worker origin, without a path, credentials, query or fragment.",
+      );
+    if (!token || token.length < 32)
+      throw new Error("Enter the worker access token before asking for guidance.");
+    if (!goal.trim() || goal.length > 500) throw new Error("Enter a goal of 1 to 500 characters.");
+    if (!["guide", "simplify", "explain"].includes(mode) || !["en", "hi"].includes(language))
+      throw new Error("Unsupported guidance mode or language.");
+    url.pathname = "/guidance";
+    const payload = { goal: goal.trim(), mode, language, context };
+    if (previousInstruction) payload.previousInstruction = previousInstruction.slice(0, 1000);
+    const response = await fetch(url.href, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+      body: JSON.stringify(payload),
+      signal,
+      credentials: "omit",
+      redirect: "error",
+      cache: "no-store",
+    });
+    const reader = response.body?.getReader();
+    let size = 0;
+    const chunks = [];
+    if (!reader) throw new Error("Guidance service returned no response.");
+    try {
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        size += value.length;
+        if (size > 65536) throw new Error("Guidance response is too large.");
+        chunks.push(value);
+      }
+    } finally {
+      await reader.cancel().catch(() => {});
+    }
+    const bytes = new Uint8Array(size);
+    let offset = 0;
+    for (const chunk of chunks) {
+      bytes.set(chunk, offset);
+      offset += chunk.length;
+    }
+    let data;
+    try {
+      data = JSON.parse(new TextDecoder().decode(bytes));
+    } catch {
+      throw new Error("Guidance service returned an invalid response.");
+    }
+    if (!response.ok)
+      throw new Error(
+        response.status === 401
+          ? "Worker access token was rejected."
+          : response.status === 403
+            ? "Worker access was denied. Its allowed origins must include this extension origin or widget website. Check setup in the toolbar popup."
+            : response.status === 429
+              ? "The guidance service is busy. Wait before trying again."
+              : "Guidance is unavailable. Check the worker and model, then try again.",
+      );
+    const validIds = new Set(
+      [
+        ...context.controls.filter((item) => !item.disabled && item.name.trim()),
+        ...context.headings.filter((item) => item.text.trim()),
+      ].map((item) => item.id),
+    );
+    if (
+      typeof data.message !== "string" ||
+      !data.message.trim() ||
+      data.message.length > 1200 ||
+      !["guidance", "insufficient-context"].includes(data.status) ||
+      data.contextRevision !== context.revision ||
+      !Array.isArray(data.steps) ||
+      data.steps.length > 4 ||
+      (data.status === "insufficient-context" && data.steps.length > 0) ||
+      data.steps.some(
+        (step) =>
+          !step ||
+          typeof step !== "object" ||
+          typeof step.instruction !== "string" ||
+          !step.instruction.trim() ||
+          step.instruction.length > 600 ||
+          (step.targetId && !validIds.has(step.targetId)),
+      )
+    )
+      throw new Error("Guidance did not match the current page evidence.");
+    return data;
+  }
+  scope.WebGuidePageAssistance = Object.freeze({
+    capture,
+    findTarget,
+    requestGuidance,
+    readText: text,
+  });
+})();

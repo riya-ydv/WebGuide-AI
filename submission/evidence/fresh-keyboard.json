@@ -1,0 +1,12 @@
+{
+  "checks": [
+    "Keyboard skip link reaches voice controls",
+    "Read page requires explicit consent; screen-reader mode uses a live status",
+    "Typed open profile command navigates to Profile",
+    "Escape revokes page consent, stops microphone and leaves stable stopped feedback"
+  ],
+  "limitations": [
+    "Typed commands do not prove real microphone recognition",
+    "ARIA checks do not prove audible Narrator or VoiceOver usability"
+  ]
+}

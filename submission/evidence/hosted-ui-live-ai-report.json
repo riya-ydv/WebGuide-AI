@@ -1,0 +1,131 @@
+{
+  "testedAt": "2026-11-15T16:33:40.035Z",
+  "checks": [
+    "Explicit runtime URL and bearer connect to hosted-mode backend",
+    "Actual local Qwen inference verified through UI",
+    "Hosted real-AI fixture exploration and visible tutorial",
+    "Hosted real-AI evisionindia.com read-only exploration and visible tutorial",
+    "URL change clears token, readiness and retained UI evidence"
+  ],
+  "jobs": [
+    {
+      "id": "f53b77e6-a7bf-4688-a79f-99e4dcb8eb87",
+      "url": "http://127.0.0.1:4319/",
+      "status": "completed",
+      "planner": "ai",
+      "tutorials": 1,
+      "generators": [
+        "AI evidence-grounded"
+      ],
+      "traceStatuses": [
+        {
+          "action": "fill",
+          "status": "verified",
+          "reason": "The input contains the disposable sample value."
+        }
+      ],
+      "events": [
+        "Isolated browser started",
+        "AI planner: ollama / qwen3:4b",
+        "Schema-validated AI proposal 1: fill",
+        "verified: Task title",
+        "Schema-validated AI proposal 2: stop",
+        "AI tutorial synthesis validated 1 evidence references"
+      ]
+    },
+    {
+      "id": "a1892acd-d53e-4516-aa95-f4d69bf6cc49",
+      "url": "https://evisionindia.com/",
+      "status": "partial",
+      "planner": "ai",
+      "tutorials": 1,
+      "generators": [
+        "AI evidence-grounded"
+      ],
+      "traceStatuses": [
+        {
+          "action": "inspect",
+          "status": "verified",
+          "reason": "Control is visible; action effect is not tested."
+        },
+        {
+          "action": "inspect",
+          "status": "verified",
+          "reason": "Control is visible; action effect is not tested."
+        },
+        {
+          "action": "inspect",
+          "status": "verified",
+          "reason": "Control is visible; action effect is not tested."
+        },
+        {
+          "action": "inspect",
+          "status": "verified",
+          "reason": "Control is visible; action effect is not tested."
+        },
+        {
+          "action": "inspect",
+          "status": "verified",
+          "reason": "Control is visible; action effect is not tested."
+        },
+        {
+          "action": "inspect",
+          "status": "verified",
+          "reason": "Control is visible; action effect is not tested."
+        },
+        {
+          "action": "inspect",
+          "status": "verified",
+          "reason": "Control is visible; action effect is not tested."
+        },
+        {
+          "action": "inspect",
+          "status": "verified",
+          "reason": "Control is visible; action effect is not tested."
+        },
+        {
+          "action": "inspect",
+          "status": "verified",
+          "reason": "Control is visible; action effect is not tested."
+        },
+        {
+          "action": "inspect",
+          "status": "verified",
+          "reason": "Control is visible; action effect is not tested."
+        }
+      ],
+      "events": [
+        "Isolated browser started",
+        "AI planner: ollama / qwen3:4b",
+        "Schema-validated AI proposal 1: inspect",
+        "verified: Enter your e-mail",
+        "Schema-validated AI proposal 2: inspect",
+        "verified: Subscribe",
+        "Schema-validated AI proposal 3: inspect",
+        "verified: Skip to content",
+        "Schema-validated AI proposal 4: inspect",
+        "verified: Home",
+        "Schema-validated AI proposal 5: inspect",
+        "verified: About Us",
+        "Schema-validated AI proposal 6: inspect",
+        "verified: Solutions",
+        "Schema-validated AI proposal 7: inspect",
+        "verified: Categories",
+        "Schema-validated AI proposal 8: inspect",
+        "verified: Contact Us",
+        "Schema-validated AI proposal 9: inspect",
+        "verified: Download Catalogue",
+        "Schema-validated AI proposal 10: inspect",
+        "verified: More About Us",
+        "AI tutorial synthesis validated 10 evidence references",
+        "Action budget reached; exploration remains partial."
+      ]
+    }
+  ],
+  "scope": "Latest source UI4350, worker4397, fresh isolated SQLite and credential. Previously fresh managed Qwen11436 reused. Not a fresh installation.",
+  "initialFailure": {
+    "stage": "sandbox tutorial synthesis",
+    "message": "AI tutorial cited unknown evidence",
+    "resolution": "Allowed trace IDs constrained by schema; unavailable/invalid optional synthesis falls back to verified-only template, visibly labeled Template-generated. Two regression tests passed."
+  }
+}

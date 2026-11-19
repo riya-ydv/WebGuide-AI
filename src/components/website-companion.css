@@ -1,0 +1,98 @@
+.wg-companion {
+  color: #142c40;
+  max-width: 1080px;
+}
+.wg-companion-intro {
+  max-width: 750px;
+  padding: 8px 0 12px;
+}
+.wg-companion-intro h2 {
+  font-size: clamp(23px, 3vw, 32px);
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  margin: 8px 0 12px;
+}
+.wg-companion-kicker {
+  color: #176a72;
+  font-size: 12px;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+}
+.wg-companion .gf-card {
+  background: #fff;
+  border: 1px solid #d3dfe7;
+  box-shadow: none;
+  border-radius: 16px;
+  padding: 24px;
+}
+.wg-companion .gf-card h2 {
+  font-size: 22px;
+}
+.wg-companion .gf-card p,
+.wg-companion li {
+  line-height: 1.65;
+}
+.wg-companion .wg-action {
+  background: #176a72;
+  color: white;
+  min-height: 44px;
+}
+.wg-companion-diagnostic {
+  border-left: 4px solid #176a72;
+  background: #f1f6f7;
+  padding: 16px 20px;
+  margin: 20px 0;
+  border-radius: 0 10px 10px 0;
+}
+.wg-companion-diagnostic h3 {
+  margin: 0 0 8px;
+  font-size: 19px;
+}
+.wg-companion-address {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 8px 0;
+}
+.wg-companion-address code {
+  overflow-wrap: anywhere;
+}
+.wg-companion-address button {
+  min-height: 44px;
+  padding: 9px 14px;
+  border: 1px solid #547486;
+  border-radius: 8px;
+  background: white;
+  color: #142c40;
+  cursor: pointer;
+  font: inherit;
+}
+.wg-companion button:focus-visible,
+.wg-companion a:focus-visible {
+  outline: 3px solid #b44e19;
+  outline-offset: 3px;
+}
+.wg-companion-note {
+  color: #435d70;
+  font-size: 14px;
+}
+.wg-companion li {
+  padding-left: 4px;
+  margin: 12px 0;
+}
+@media (max-width: 600px) {
+  .wg-companion .gf-card {
+    padding: 18px;
+  }
+  .wg-companion-diagnostic {
+    padding: 14px;
+  }
+  .wg-companion-address {
+    align-items: stretch;
+  }
+  .wg-companion-address button {
+    width: 100%;
+  }
+}

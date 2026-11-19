@@ -1,0 +1,23 @@
+{
+  "testedAt": "2026-11-15T16:30:20.862Z",
+  "realModel": true,
+  "checks": [
+    "shared verified connection",
+    "actual current-page guidance",
+    "draft value excluded",
+    "goal edit clears old result",
+    "practice website opens with widget",
+    "website link opens directly"
+  ],
+  "answer": {
+    "message": "The page shows a profile section with display name and other details. To save your profile, click the 'Save profile' button.",
+    "steps": [
+      {
+        "instruction": "Click the 'Save profile' button",
+        "targetId": "wg-target-6"
+      }
+    ],
+    "status": "guidance",
+    "contextRevision": "page-3a323954"
+  }
+}

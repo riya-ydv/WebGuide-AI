@@ -1,0 +1,68 @@
+{
+  "testedAt": "2026-11-15T16:47:13.723Z",
+  "sourceZipSha256": "af58bf28c8f7c96254be2044a41b9833f6470f4965dd90d8f9447342129ffe4a",
+  "mode": "Fresh release extraction; verified runtime/model/browser/npm cache reused via hardlinks from previous candidate1. Not a clean download.",
+  "copiedCaches": {
+    "node": 1994,
+    "ollama-0.40.16-win32-x64": 76,
+    "models": 9,
+    "browsers": 603,
+    "npm-cache": 602
+  },
+  "envCopied": false,
+  "sqliteCopied": false,
+  "nodeModulesCopied": false,
+  "locksCopied": false,
+  "manifestFilesVerified": 263,
+  "launcher": "Actual Start WebGuide.bat executed in Windows PowerShell; --no-browser suppresses OS browser opening only",
+  "nodeRuntime": "Private Node24.22.3 bundled runtime cache; application npm ci freshly executed",
+  "results": {
+    "lockedDependencyInstall": "passed",
+    "privateModelWarmup": "real response verified",
+    "sqliteHeader": "SQLite format3",
+    "authenticatedHealth": {
+      "workerConnected": true,
+      "aiConfigured": true,
+      "aiProvider": "ollama",
+      "aiModel": "qwen3:4b",
+      "aiReachable": true,
+      "aiModelAvailable": true,
+      "aiDetail": "Model available; an inference run is still required",
+      "aiVerifiedAt": null,
+      "browserReady": true,
+      "mode": "local-single-user",
+      "persistentEvidence": true,
+      "persistenceEngine": "sqlite",
+      "persistenceHealthy": true
+    },
+    "reopen": "Second actual BAT detected existing owner, verified services and started no duplicate service",
+    "freshUiChecks": [
+      "fresh module one-time launcher URL automatically connects verified worker without token entry",
+      "nonce removed and no automatic microphone or persisted worker token",
+      "profile saved",
+      "FAQ search and disclosure",
+      "saved website create/edit/cancel deletion/confirmed removal",
+      "practice opens actual embedded widget only after activation",
+      "actual fresh configured model names Save profile with no unrelated demo action",
+      "profile persists across browser reload"
+    ],
+    "realModelAnswer": {
+      "message": "The 'Save profile' button (wg-target-6) saves profile changes. It's labeled 'Save profile' and has type 'submit'.",
+      "steps": [
+        {
+          "instruction": "Click the 'Save profile' button",
+          "targetId": "wg-target-6"
+        }
+      ],
+      "status": "guidance",
+      "contextRevision": "page-bd0d4b4f"
+    }
+  },
+  "limitations": [
+    "Caches reused; not a clean network download",
+    "Windows tested; physical Mac launcher not verified",
+    "Browser acceptance uses extracted launcher module one-time bridge with Playwright, not OS double click",
+    "No microphone audio or screen reader acceptance in this smoke test",
+    "Candidate ZIP hash recorded; final rebuild may add evidence, docs and updated test scripts without application changes"
+  ]
+}

@@ -1,0 +1,70 @@
+# Model-only Linux deployment template. Docker runtime has NOT been verified here.
+# Official :server multi-platform manifest digest resolved from GHCR on 2026-11-14.
+services:
+  model:
+    image: ghcr.io/ggml-org/llama.cpp@sha256:e3032ea0712da96dec820c770626385de4322dd06619fb5829256a504bbc9375
+    user: "65532:65532"
+    restart: unless-stopped
+    init: true
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    cpus: 4.0
+    mem_limit: 8g
+    memswap_limit: 8g
+    pids_limit: 128
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,nodev,size=128m,uid=65532,gid=65532
+    ports:
+      - "127.0.0.1:11435:8080"
+    volumes:
+      - type: bind
+        source: ${WEBGUIDE_MODEL_DIR:-../local-runtime/models}
+        target: /models
+        read_only: true
+        bind:
+          create_host_path: false
+    secrets:
+      - model_api_key
+    command:
+      - --model
+      - /models/Qwen3-4B-Q4_K_M.gguf
+      - --alias
+      - webguide-qwen
+      - --host
+      - 0.0.0.0
+      - --port
+      - "8080"
+      - --ctx-size
+      - "8192"
+      - --parallel
+      - "1"
+      - --threads
+      - "4"
+      - --n-gpu-layers
+      - "0"
+      - --api-key-file
+      - /run/secrets/model_api_key
+      - --jinja
+      - --reasoning
+      - "off"
+      - --no-webui
+      - --no-slots
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "--silent", "http://127.0.0.1:8080/health"]
+      interval: 15s
+      timeout: 5s
+      start_period: 120s
+      retries: 4
+    networks: [model_private]
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
+secrets:
+  model_api_key:
+    file: ${WEBGUIDE_MODEL_KEY_FILE:-./secrets/llm-api-key}
+networks:
+  model_private:
+    internal: true

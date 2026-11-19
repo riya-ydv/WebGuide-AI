@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "checks": [
+    "no autoplay",
+    "skip links",
+    "focus management",
+    "typed and Hindi commands",
+    "safe form fill",
+    "confirmation and cancel",
+    "sensitive field protection",
+    "stale action invalidation",
+    "page reading privacy",
+    "speech synthesis dispatch",
+    "simulated recognition event",
+    "escape stop",
+    "320px reflow",
+    "confirmed dropdown selection",
+    "microphone denial and speech failure fallback"
+  ],
+  "limitations": [
+    "Recognition events and synthesis were mocked: no real microphone/audio quality or screen reader verified"
+  ]
+}

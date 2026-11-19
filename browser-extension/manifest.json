@@ -1,0 +1,37 @@
+{
+  "manifest_version": 3,
+  "name": "WebGuide AI Browser Companion",
+  "version": "1.1.0",
+  "description": "User-activated spoken page guidance and confirmed navigation on the current website.",
+  "permissions": ["activeTab", "scripting", "storage"],
+  "action": {
+    "default_title": "Open WebGuide AI voice guidance",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/webguide-16.png",
+      "32": "icons/webguide-32.png",
+      "48": "icons/webguide-48.png",
+      "128": "icons/webguide-128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Alt+Shift+W"
+      },
+      "description": "Open WebGuide AI on this page"
+    }
+  },
+  "optional_host_permissions": ["https://*/*", "http://127.0.0.1/*", "http://localhost/*"],
+  "icons": {
+    "16": "icons/webguide-16.png",
+    "32": "icons/webguide-32.png",
+    "48": "icons/webguide-48.png",
+    "128": "icons/webguide-128.png"
+  },
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkKJS3SkzzpYCWd5q83CNliz0aJkkGL+eL4UqbsLshL1WYavvKa56mgh2CeLQk5ggOhPsXbkIICEXlF99PtY/NhYp1kHLbnilJPJIRBcOQsquW/I/GPFH0F+TuPxacsWXRKfItHOSVQUkx0EIit620lV1ouVKcCIvPDJjz1lIHZjXYuXxOUZ9Bs+E0IdnUwOdrFXoXXHfobq6d33qBVtNouR8guCeoqNrINUBEq7HyEk+YZwX88Zf3QogK8gewUSggDpcPjS3+KIjHoS1sP4dDkN9vz3b4Ml4BdoIrRb87K9LWQih65LQUtaGMRFIT8TUIqyBAXlSN2xltptqxAAY6QIDAQAB",
+  "minimum_chrome_version": "102"
+}

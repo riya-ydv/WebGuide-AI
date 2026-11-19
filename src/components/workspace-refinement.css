@@ -1,0 +1,307 @@
+/* Task-first workspace: the same labelled controls, without a page-sized hero. */
+.gf-app .gf-main main {
+  padding: 24px 32px;
+}
+.gf-app .gf-page-heading {
+  margin-bottom: 16px;
+}
+.gf-app .gf-page-heading h1 {
+  font-size: clamp(26px, 2.2vw, 32px);
+}
+.gf-app .gf-sidebar {
+  padding: 20px 16px;
+}
+.gf-app .gf-sidebar nav button {
+  justify-content: flex-start;
+  text-align: left;
+  min-height: 44px;
+  padding: 9px 12px;
+  gap: 12px;
+}
+.gf-app .gf-sidebar nav {
+  gap: 4px;
+}
+.gf-app .gf-sidebar .gf-eyebrow {
+  margin: 18px 10px 6px;
+}
+.gf-app .gf-main main > .wg-voice {
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px 18px;
+  border-top-width: 2px;
+}
+.gf-app .wg-voice .gf-section-title {
+  grid-column: 1 / -1;
+  margin: 0;
+  min-height: 0;
+}
+.gf-app .wg-voice h2 {
+  font-size: 18px;
+  margin: 0;
+}
+.gf-app .wg-voice-controls {
+  grid-column: 1 / -1;
+  margin: 0;
+  gap: 8px;
+}
+.gf-app .wg-voice-controls button {
+  min-height: 44px;
+  padding: 9px 14px;
+  flex: 0 1 auto;
+}
+.gf-app .wg-voice .wg-access-options {
+  margin: 0;
+  gap: 8px;
+}
+.gf-app .wg-access-options button {
+  min-height: 44px;
+  padding: 7px 12px;
+  font-size: 14px;
+}
+.gf-app .wg-voice .wg-keyboard-hint {
+  align-self: center;
+  margin: 0;
+  font-size: 13px;
+}
+.gf-app .wg-voice .wg-page-permission {
+  grid-column: 1 / -1;
+  margin: 0;
+  min-height: 44px;
+  padding: 6px 10px;
+  font-size: 14px;
+}
+.gf-app .wg-voice .wg-voice-status {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 6px 10px;
+  font-size: 14px;
+}
+.gf-app .wg-voice .wg-more-voice {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 0;
+}
+.gf-app .wg-voice .wg-more-voice > summary {
+  min-height: 32px;
+  padding: 6px 0;
+  font-size: 14px;
+}
+.gf-app .wg-voice .wg-more-voice[open] {
+  padding-top: 8px;
+}
+.gf-app .wg-practice {
+  padding: 20px;
+  gap: 18px;
+}
+.gf-app .wg-practice h2 {
+  font-size: 23px;
+  margin: 4px 0 8px;
+}
+.gf-app .wg-practice p {
+  margin-bottom: 12px;
+}
+.gf-app .wg-practice-note {
+  display: none;
+}
+.gf-app .wg-dashboard {
+  gap: 16px;
+}
+.gf-app .wg-journey {
+  padding: 20px;
+}
+.gf-app .wg-journey h2 {
+  font-size: 22px;
+}
+.gf-app .wg-quick-links button {
+  padding: 16px;
+  min-height: 88px;
+}
+.gf-app .gf-empty {
+  min-height: 100px;
+  padding: 16px;
+}
+.gf-app .gf-empty p {
+  margin: 8px 0;
+}
+.gf-app .gf-section-title {
+  margin-bottom: 12px;
+}
+.gf-app .gf-card p {
+  line-height: 1.55;
+}
+.gf-app .taskdesk form {
+  display: block;
+  margin: 0;
+}
+.gf-app .taskdesk form > label {
+  display: block;
+  margin-bottom: 8px;
+}
+.gf-app .taskdesk form > div {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.gf-app .taskdesk form input {
+  min-width: 0;
+  flex: 1 1 180px;
+}
+.gf-app .taskdesk > .grid {
+  align-items: start;
+}
+.gf-app .wg-connection-details,
+.gf-app .wg-test-options {
+  margin: 12px 0;
+  border-top: 1px solid #d4dfe4;
+}
+.gf-app details > summary {
+  cursor: pointer;
+  padding: 12px 0;
+  min-height: 44px;
+}
+.gf-app .wg-connection-summary {
+  padding: 10px 12px;
+  background: #edf5f4;
+  border-radius: 8px;
+}
+.wg-companion {
+  max-width: none;
+}
+.wg-companion-start {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.wg-companion-start h2 {
+  margin: 0;
+}
+.wg-companion-start p {
+  margin: 8px 0;
+}
+.wg-setup-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.gf-app .wg-setup-grid .gf-card {
+  padding: 20px;
+  margin: 0;
+}
+.wg-step-number {
+  display: inline-grid;
+  place-items: center;
+  background: #e0f1ee;
+  color: #145f69;
+  border-radius: 10px;
+  width: 42px;
+  height: 42px;
+  font-weight: 750;
+}
+.gf-app .wg-setup-grid h2 {
+  font-size: 21px;
+  margin: 12px 0;
+}
+.wg-companion .wg-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-weight: 650;
+  text-decoration: none;
+}
+.wg-site-form {
+  display: grid;
+  gap: 12px;
+}
+.wg-site-form label {
+  display: grid;
+  gap: 8px;
+}
+.wg-site-form input {
+  width: 100%;
+  min-width: 0;
+}
+.wg-setup-short {
+  padding-left: 22px;
+}
+.gf-app .wg-companion li {
+  margin: 8px 0;
+  line-height: 1.5;
+}
+.gf-app .wg-companion .gf-card p {
+  font-size: 15px;
+}
+@media (max-width: 900px) {
+  .wg-setup-grid {
+    grid-template-columns: 1fr;
+  }
+  .wg-companion-start {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .gf-app .wg-voice .wg-keyboard-hint {
+    grid-column: 1 / -1;
+  }
+  .gf-app .wg-voice .wg-access-options {
+    grid-column: 1 / -1;
+  }
+}
+@media (max-width: 600px) {
+  .gf-app .gf-main main {
+    padding: 18px 14px;
+  }
+  .gf-app .gf-main main > .wg-voice {
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .gf-app .wg-voice-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .gf-app .wg-voice-controls .gf-primary {
+    grid-column: 1 / -1;
+  }
+  .gf-app .wg-voice-controls button {
+    width: 100%;
+  }
+  .gf-app .wg-voice .wg-page-permission {
+    width: 100%;
+  }
+  .gf-app .wg-practice {
+    padding: 16px;
+  }
+  .gf-app .wg-practice-symbol {
+    display: none;
+  }
+  .wg-setup-grid {
+    gap: 14px;
+  }
+  .gf-app .wg-setup-grid .gf-card {
+    padding: 16px;
+  }
+}
+@media (min-width: 1250px) {
+  .gf-app .wg-voice-controls {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .gf-app .wg-voice .wg-access-options {
+    grid-column: 2;
+    grid-row: 2;
+  }
+  .gf-app .wg-voice .wg-page-permission {
+    grid-column: 1;
+    grid-row: 3;
+  }
+  .gf-app .wg-voice .wg-keyboard-hint {
+    grid-column: 2;
+    grid-row: 3;
+  }
+}

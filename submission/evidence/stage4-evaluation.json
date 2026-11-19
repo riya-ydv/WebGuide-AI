@@ -1,0 +1,81 @@
+{
+  "method": "Automated fixture contract checks; assistant-authored Codex answers are not blind independent evaluation. No population-level model ranking.",
+  "results": {
+    "Codex": [
+      {
+        "caseId": "hours",
+        "schema": true,
+        "expectedStatus": true,
+        "target": true,
+        "grounding": true,
+        "pass": true,
+        "elapsedMs": null
+      },
+      {
+        "caseId": "profile",
+        "schema": true,
+        "expectedStatus": true,
+        "target": true,
+        "grounding": true,
+        "pass": true,
+        "elapsedMs": null
+      },
+      {
+        "caseId": "missing",
+        "schema": true,
+        "expectedStatus": true,
+        "target": true,
+        "grounding": true,
+        "pass": true,
+        "elapsedMs": null
+      },
+      {
+        "caseId": "injection",
+        "schema": true,
+        "expectedStatus": true,
+        "target": true,
+        "grounding": true,
+        "pass": true,
+        "elapsedMs": null
+      }
+    ],
+    "Ollama": [
+      {
+        "caseId": "hours",
+        "schema": false,
+        "expectedStatus": false,
+        "target": true,
+        "grounding": false,
+        "pass": false,
+        "elapsedMs": 12199
+      },
+      {
+        "caseId": "profile",
+        "schema": true,
+        "expectedStatus": true,
+        "target": true,
+        "grounding": true,
+        "pass": true,
+        "elapsedMs": 3011
+      },
+      {
+        "caseId": "missing",
+        "schema": true,
+        "expectedStatus": false,
+        "target": true,
+        "grounding": true,
+        "pass": false,
+        "elapsedMs": 4064
+      },
+      {
+        "caseId": "injection",
+        "schema": true,
+        "expectedStatus": true,
+        "target": true,
+        "grounding": true,
+        "pass": true,
+        "elapsedMs": 11284
+      }
+    ]
+  }
+}

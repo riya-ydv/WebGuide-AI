@@ -1,0 +1,108 @@
+[
+  {
+    "name": "Overview",
+    "violations": [],
+    "voiceHeight": 253.96875,
+    "overflow": false
+  },
+  {
+    "name": "Website companion",
+    "violations": [],
+    "voiceHeight": 263.96875,
+    "overflow": false
+  },
+  {
+    "name": "Explorer",
+    "violations": [],
+    "voiceHeight": 263.96875,
+    "overflow": false
+  },
+  {
+    "name": "Ask WebGuide",
+    "violations": [],
+    "voiceHeight": 263.96875,
+    "overflow": false
+  },
+  {
+    "name": "Features",
+    "violations": [],
+    "voiceHeight": 263.96875,
+    "overflow": false
+  },
+  {
+    "name": "Tutorials",
+    "violations": [],
+    "voiceHeight": 263.96875,
+    "overflow": false
+  },
+  {
+    "name": "Saved websites",
+    "violations": [],
+    "voiceHeight": 263.96875,
+    "overflow": false
+  },
+  {
+    "name": "Run history",
+    "violations": [],
+    "voiceHeight": 263.96875,
+    "overflow": false
+  },
+  {
+    "name": "Profile",
+    "violations": [],
+    "voiceHeight": 263.96875,
+    "overflow": false
+  },
+  {
+    "name": "Settings",
+    "violations": [],
+    "voiceHeight": 263.96875,
+    "overflow": false
+  },
+  {
+    "name": "FAQs",
+    "violations": [],
+    "voiceHeight": 263.96875,
+    "overflow": false
+  },
+  {
+    "name": "Overview",
+    "width": 390,
+    "overflow": false
+  },
+  {
+    "name": "Website companion",
+    "width": 390,
+    "overflow": false
+  },
+  {
+    "name": "Explorer",
+    "width": 390,
+    "overflow": false
+  },
+  {
+    "name": "Ask WebGuide",
+    "width": 390,
+    "overflow": false
+  },
+  {
+    "name": "Overview",
+    "width": 320,
+    "overflow": false
+  },
+  {
+    "name": "Website companion",
+    "width": 320,
+    "overflow": false
+  },
+  {
+    "name": "Explorer",
+    "width": 320,
+    "overflow": false
+  },
+  {
+    "name": "Ask WebGuide",
+    "width": 320,
+    "overflow": false
+  }
+]

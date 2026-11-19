@@ -1,0 +1,20 @@
+{
+  "testedAt": "2026-11-15T16:40:47.742388+00:00",
+  "method": "Native Chrome UI via computer-use; not an injected click or API substitute",
+  "extensionVersion": "1.1.0",
+  "checks": [
+    "Developer mode revealed Load unpacked in full Chrome settings",
+    "Authored browser-extension folder loaded; Chrome displayed Extension loaded",
+    "Pinned toolbar WebGuide icon opened real popup",
+    "Keyboard Tab and Enter activated Open companion on this page",
+    "Popup confirmed Companion opened; actual page accessibility tree contained WebGuide page assistant",
+    "Page-reading permission was initially unchecked; microphone was not active"
+  ],
+  "page": "http://127.0.0.1:4350/demo-service.html",
+  "boundaries": [
+    "Native backend-origin permission prompt not exercised",
+    "No microphone recognition or audible screen-reader acceptance established by this check",
+    "Source directory loaded, not downloaded ZIP; archive byte checks are separate"
+  ],
+  "evidence": "Native computer-use tool observations in this development session"
+}

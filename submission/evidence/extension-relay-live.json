@@ -1,0 +1,16 @@
+{
+  "testedAt": "2026-11-15T16:30:38.239Z",
+  "mode": "real Chromium extension and real model; loopback host permission granted in temporary fixture manifest",
+  "nativePermissionPrompt": "NOT exercised; this test does not establish physical toolbar or browser permission-prompt acceptance",
+  "checks": [
+    "Pending origin-permission connection survives popup closure without exposing token (no native permission dialog exercised)",
+    "Authenticated connection remains available after popup closure; status returns no token",
+    "Actual service-worker authenticated guidance POST returned real model service hours",
+    "Private draft and backend token absent from page-context payload and website token field",
+    "Stop clears page-sharing consent and disables speech",
+    "Actual service-worker stop/restart retains session connection without returning token",
+    "Reload and repeated injection create exactly one companion"
+  ],
+  "guidance": "The page shows opening hours: 'Monday to Friday, 9 AM to 5 PM'.\n1. The opening hours are visible in the page text: 'Our support desk is open Monday to Friday, 9 AM to 5 PM.'",
+  "passed": true
+}

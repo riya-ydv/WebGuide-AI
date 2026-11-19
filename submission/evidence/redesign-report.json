@@ -1,0 +1,66 @@
+{
+  "testedAt": "2026-11-15T16:21:58.890Z",
+  "url": "http://127.0.0.1:4350",
+  "routes": [
+    {
+      "section": "Profile",
+      "violations": []
+    },
+    {
+      "section": "FAQs",
+      "violations": []
+    },
+    {
+      "section": "Saved websites",
+      "violations": []
+    },
+    {
+      "section": "Tutorials",
+      "violations": []
+    },
+    {
+      "section": "Settings",
+      "violations": []
+    },
+    {
+      "section": "Website companion",
+      "violations": []
+    },
+    {
+      "section": "Explorer",
+      "violations": []
+    },
+    {
+      "section": "Features",
+      "violations": []
+    },
+    {
+      "section": "Run history",
+      "violations": []
+    },
+    {
+      "section": "Ask WebGuide",
+      "violations": []
+    },
+    {
+      "section": "Overview",
+      "violations": []
+    }
+  ],
+  "checks": [
+    "First Tab then Enter focuses the primary Start voice guide button",
+    "Keyboard skip-to-main works",
+    "All 11 navigation changes focus the section heading",
+    "320px viewport without horizontal overflow",
+    "390px viewport without horizontal overflow",
+    "200% equivalent viewport reflow at 640px, no horizontal overflow",
+    "400% equivalent viewport reflow at 320px, no horizontal overflow",
+    "Reduced motion removes transitions",
+    "Keyboard-only navigation, save website form, reload persistence and confirmed removal"
+  ],
+  "limits": [
+    "Automated axe and keyboard checks do not establish usability for blind people or physical screen-reader compatibility.",
+    "640/320px viewports approximate 200/400 percent browser-zoom reflow at 1280px. They do not test native browser zoom or operating-system magnification."
+  ],
+  "pageErrors": []
+}

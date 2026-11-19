@@ -1,0 +1,23 @@
+# Keep build contexts free of user data and local runtimes.
+.git
+.env
+.env.*
+!.env.example
+node_modules
+.output
+.nitro
+.tanstack
+.wrangler
+.codex
+.agents
+local-runtime
+artifacts
+release
+*.zip
+*.pdf
+*.patch
+*.log
+worker-data
+deploy/google-cloud/.source-*
+
+!public/webguide-companion.zip

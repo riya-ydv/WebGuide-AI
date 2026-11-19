@@ -1,0 +1,43 @@
+{
+  "recordedAt": "2026-11-15T16:46:03.131648+00:00",
+  "scope": "Revised source verification; each suite has distinct bounded coverage",
+  "checks": [
+    {
+      "command": "npm run test",
+      "passed": 78,
+      "failed": 0
+    },
+    {
+      "command": "npm run test:worker",
+      "passed": 28,
+      "failed": 0
+    },
+    {
+      "command": "node --test scripts/launcher-core.test.mjs scripts/launcher-secondary.test.mjs scripts/launcher-connection.test.mjs scripts/runtime-bootstrap.test.mjs scripts/extension-background.test.mjs",
+      "passed": 26,
+      "failed": 0
+    },
+    {
+      "command": "npm run typecheck",
+      "result": "pass"
+    },
+    {
+      "command": "npm run build",
+      "result": "pass"
+    },
+    {
+      "command": "npm run lint",
+      "errors": 0,
+      "warnings": 8
+    },
+    {
+      "command": "python scripts/package-security-test.py",
+      "result": "pass"
+    }
+  ],
+  "limits": [
+    "Tests do not establish independent blind-user usability or physical Mac execution",
+    "Provider contract unit cases are mocked; actual model records are separate",
+    "Native toolbar evidence is separate from automated extension relay permission-fixture testing"
+  ]
+}
